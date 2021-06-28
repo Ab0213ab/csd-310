@@ -29,11 +29,10 @@ CREATE TABLE player (
     player_id   INT          NOT NULL    AUTO_INCREMENT,
     first_name  VARCHAR(75)  NOT NULL,
     last_name   VARCHAR(75)  NOT NULL,
-    team_id     INT          NOT NULL,
+    team_id     INT          NULL,
     PRIMARY KEY(player_id),
     CONSTRAINT fk_team
-    FOREIGN KEY(team_id)
-        REFERENCES team(team_id) 
+    FOREIGN KEY(team_id) REFERENCES team(team_id) 
 );
 
 -- Insert team records
@@ -55,7 +54,7 @@ INSERT INTO player(first_name, last_name)
 
 -- Tests
 SELECT team_id FROM team WHERE team_name = "Payne's Polar Bears";
-SELECT mascot FROM team WHERE team_name = "Sampson's Scorpions";
+SELECT team_id FROM player WHERE first_name = "Ray";
 
 
 
