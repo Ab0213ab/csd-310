@@ -29,7 +29,7 @@ CREATE TABLE player (
     player_id   INT          NOT NULL    AUTO_INCREMENT,
     first_name  VARCHAR(75)  NOT NULL,
     last_name   VARCHAR(75)  NOT NULL,
-    team_id     INT          NULL,
+    team_id     INT          NOT NULL,
     PRIMARY KEY(player_id),
     CONSTRAINT fk_team
     FOREIGN KEY(team_id) REFERENCES team(team_id) 
@@ -37,24 +37,23 @@ CREATE TABLE player (
 
 -- Insert team records
 INSERT INTO team(team_name, mascot)
-    VALUES("Sampson's Scorpions","Scorpion");
+    VALUES('Sampson Scorpions','Scorpion');
 
 INSERT INTO team(team_name, mascot)
-    VALUES("Payne's Polar Bears","Polar Bear");
+    VALUES('Payne Polar Bears','Polar Bear');
 
 -- Insert player records
-INSERT INTO player(first_name, last_name)
-    VALUES("Jack", "Sparrow");
+INSERT INTO player(first_name, last_name, team_id)
+    VALUES('Jack', 'Sparrow', 1);
 
-INSERT INTO player(first_name, last_name)
-    VALUES("Ray", "Kurzweil");
+INSERT INTO player(first_name, last_name, team_id)
+    VALUES('Ray', 'Kurzweil', 2);
 
-INSERT INTO player(first_name, last_name)
-    VALUES("Christopher", "Colburn");
+INSERT INTO player(first_name, last_name, team_id)
+    VALUES('Christopher', 'Colburn', 1);
 
--- Tests
-SELECT team_id FROM team WHERE team_name = "Payne's Polar Bears";
-SELECT team_id FROM player WHERE first_name = "Ray";
+SELECT team_id FROM team WHERE team_name = 'Payne Polar Bears';
+
 
 
 
