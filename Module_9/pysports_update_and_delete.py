@@ -2,7 +2,7 @@
 # Andrew Schaefer
 # 7/6/21
 # CSD-310
-# Module 9.2
+# Module 9.3
 
 import mysql.connector
 from mysql.connector import errorcode 
@@ -18,8 +18,12 @@ config = {
 db = mysql.connector.connect(**config)
 mycursor = db.cursor()
 
+# Insert new player record
+mycursor.execute("""INSERT INTO player(first_name, last_name, team_id)
+	VALUES('Elissa', 'Steamer', 1)""")
 
-# Inner Join selection statement
+
+# Inner Join selection statement 
 sql = "SELECT player_id, first_name, last_name, team_name \
 	FROM team \
 	INNER JOIN player ON team.team_id = player.team_id"
@@ -27,23 +31,6 @@ sql = "SELECT player_id, first_name, last_name, team_name \
 mycursor.execute(sql)
 myresult = mycursor.fetchall()
 
-print("\n--DISPLAYING PLAYER RECORDS--")
-
-for x in myresult:
-	print("Player ID: {}" .format(x[0]))
-	print("First Name: {}" .format(x[1]))
-	print("Last Name: {}" .format(x[2]))
-	print("Team Name: {}" .format(x[3]))
-
-
-# Left Outer Join selection statement
-sql2 = "SELECT player_id, first_name, last_name, team_name \
-	FROM team \
-	LEFT OUTER JOIN player ON team.team_id = player.team_id"
-
-mycursor.execute(sql2)
-myresult = mycursor.fetchall()
-
 # Display output heading
 print("\n--DISPLAYING PLAYER RECORDS--")
 
@@ -55,41 +42,51 @@ for x in myresult:
 	print("Team Name: {}" .format(x[3]))
 
 
-# Right Outer Join selection statement
+# Update record
+sql2 = "UPDATE player SET team_id = 2 WHERE first_name = 'Elissa'"
+mycursor.execute(sql2)
+
+
+# Inner Join selection statement
 sql3 = "SELECT player_id, first_name, last_name, team_name \
 	FROM team \
-	RIGHT OUTER JOIN player ON team.team_id = player.team_id"
+	INNER JOIN player ON team.team_id = player.team_id"
 
 mycursor.execute(sql3)
-myresult = mycursor.fetchall()
+myresult2 = mycursor.fetchall()
 
 # Display output heading
 print("\n--DISPLAYING PLAYER RECORDS--")
 
 # Display all records
-for x in myresult:
+for x in myresult2:
 	print("Player ID: {}" .format(x[0]))
 	print("First Name: {}" .format(x[1]))
 	print("Last Name: {}" .format(x[2]))
 	print("Team Name: {}" .format(x[3]))
 
 
-# WHERE Clause Used
-sql4 = "SELECT first_name, last_name \
-	FROM player \
-	WHERE player_id = 3"
-
+# Delete record
+sql4 = "DELETE FROM player WHERE first_name = 'Elissa'"
 mycursor.execute(sql4)
-myresult = mycursor.fetchall()
+
+# Inner Join selection statement
+sql5 = "SELECT player_id, first_name, last_name, team_name \
+	FROM team \
+	INNER JOIN player ON team.team_id = player.team_id"
+
+mycursor.execute(sql5)
+myresult3 = mycursor.fetchall()
 
 # Display output heading
 print("\n--DISPLAYING PLAYER RECORDS--")
 
 # Display all records
-for x in myresult:
-	print("First Name: {}" .format(x[0]))
-	print("Last Name: {}" .format(x[1]))
-
+for x in myresult3:
+	print("Player ID: {}" .format(x[0]))
+	print("First Name: {}" .format(x[1]))
+	print("Last Name: {}" .format(x[2]))
+	print("Team Name: {}" .format(x[3]))
 
 try:
 	db = mysql.connector.connect(**config)
