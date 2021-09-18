@@ -1,2 +1,8 @@
 # csd-310
-This repository was created as an assignment for Bellevue University's BS in Software Development Database Development and Use class.
+<h1>CSD-310 Database Development and Use</h1>
+<h2>Contributors</h2>
+<ul>
+  <li>Professor Sue Sampson</li>
+  <li>Andrew Schaefer</li>
+</ul>
+This repository was created as an assignment for Bellevue University's Database Development and Use class.
