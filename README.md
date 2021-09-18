@@ -5,4 +5,6 @@
   <li>Professor Sue Sampson</li>
   <li>Andrew Schaefer</li>
 </ul>
-This repository was created as an assignment for Bellevue University's Database Development and Use class.
+This repository was created to house the assignments from Bellevue University's B.S. in Software Development Database Development and Use class.
+
+
